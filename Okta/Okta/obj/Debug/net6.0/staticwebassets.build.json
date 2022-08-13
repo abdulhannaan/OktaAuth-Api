@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "6VJAiHFqdGulmpIB3YTuEBgh3oGwI9xhW1wsTlfjCaE=",
+  "Source": "Okta",
+  "BasePath": "_content/Okta",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

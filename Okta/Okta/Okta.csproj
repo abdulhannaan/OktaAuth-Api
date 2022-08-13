@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="dlls\**" />
+    <Compile Remove="Uploads\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="bin\**" />
+    <Content Remove="dlls\**" />
+    <Content Remove="Uploads\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="dlls\**" />
+    <EmbeddedResource Remove="Uploads\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="bin\**" />
+    <None Remove="dlls\**" />
+    <None Remove="Uploads\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\OktaAuth\OktaAuth.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>dlls\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>dlls\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>dlls\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Pr22">
+      <HintPath>dlls\Pr22.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
