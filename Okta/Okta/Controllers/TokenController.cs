@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Okta.Services.Logging;
 using Okta.Services.User;
 using OktaAuth.Models.User;
 using System.Threading.Tasks;
@@ -12,10 +13,11 @@ namespace FrontDeskID.Controllers
     public class TokenController : Controller
     {
         private IUserService _userService;
-
-        public TokenController(IUserService userService)
+        private ILoggerManager _logger;
+        public TokenController(IUserService userService, ILoggerManager logger)
         {
             _userService = userService;
+            _logger = logger;
         }
 
 
@@ -25,6 +27,7 @@ namespace FrontDeskID.Controllers
         [Route("create")]
         public async Task<ActionResult> CreateToken([FromBody] UserLogin request)
         {
+            _logger.LogInfo("Creating TOken");
             LoginResponseModel response = await _userService.Login(request);
             return Ok(response);
         }

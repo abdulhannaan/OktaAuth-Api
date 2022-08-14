@@ -8,5 +8,6 @@ namespace Okta.Services.User
         Task<LoginResponseModel> Login(UserLogin login);
 
         Task<SignUpResponseModel> SignUp(SignUpRequestModel signup);
+        Task ClearSession(string userId);
     }
 }

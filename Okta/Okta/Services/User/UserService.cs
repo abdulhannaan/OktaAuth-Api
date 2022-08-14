@@ -25,5 +25,9 @@ namespace Okta.Services.User
         {
             return await _oktaApiHelper.CreateUserWithPassword(signup);
         }
+        public async Task ClearSession(string userId)
+        {
+            await _oktaApiHelper.ClearSession(userId);
+        }
     }
 }

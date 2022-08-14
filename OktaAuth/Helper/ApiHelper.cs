@@ -44,6 +44,11 @@ namespace OktaModels.Services
             return SendRequest<TResponse>(uri, HttpMethod.Post, queryParams, data);
         }
 
+        public Task<TResponse> Delete<TResponse>(string uri, IDictionary<string, string> queryParams = null)
+        {
+            return SendRequest<TResponse>(uri, HttpMethod.Delete, queryParams, null);
+        }
+
         protected virtual Task<HttpResponseMessage> PostAsync(HttpClient client, string url, object data)
         {
             return client.PostAsJsonAsync(url, data);
@@ -88,6 +93,10 @@ namespace OktaModels.Services
                 else if (httpMethod == HttpMethod.Post)
                 {
                     response = await PostAsync(client, requestUrl, data).ConfigureAwait(false);
+                }
+                else if (httpMethod == HttpMethod.Delete)
+                {
+                    response = await client.DeleteAsync(requestUrl).ConfigureAwait(false);
                 }
                 else
                 {
@@ -147,11 +156,9 @@ namespace OktaModels.Services
 
             else
             {
-                dynamic returnObj = JObject.Parse(result);
-                var data = returnObj["Data"];
-                if (data != null)
+                if (!string.IsNullOrEmpty(result))
                 {
-                    return JsonConvert.DeserializeObject<T>(data.ToString());
+                    return JsonConvert.DeserializeObject<T>(result);
                 }
             }
 

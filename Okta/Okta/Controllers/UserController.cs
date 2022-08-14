@@ -26,5 +26,15 @@ namespace Okta.Controllers
             var response = await _userService.SignUp(request);
             return Ok(response);
         }
+
+        //TODO: I did not find a way to authorize this call but this call will be authorized by a middleware,
+        [HttpDelete]
+        [ActionName("clear-session")]
+        [Route("clear-session")]
+        public async Task<ActionResult> ClearSession(string userId)
+        {
+            await _userService.ClearSession(userId);
+            return Ok(true);
+        }
     }
 }

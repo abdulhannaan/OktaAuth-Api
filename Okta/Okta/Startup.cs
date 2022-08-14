@@ -7,6 +7,10 @@ using Microsoft.OpenApi.Models;
 using OktaAuth.Models.Config;
 using System;
 using OktaAuth.Helper;
+using System.IO;
+using NLog;
+using Okta.Services.Logging;
+using Okta.Middlewares;
 
 namespace Okta
 {
@@ -14,6 +18,7 @@ namespace Okta
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -55,11 +60,11 @@ namespace Okta
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
-
-
             app.UseDeveloperExceptionPage();
+
+            app.ConfigureExceptionHandler(logger);
 
             app.UseHttpsRedirection();
             // Enable middleware to serve generated Swagger as a JSON endpoint.
