@@ -30,7 +30,7 @@ namespace Okta.Controllers
         //TODO: I did not find a way to authorize this call but this call will be authorized by a middleware,
         [HttpDelete]
         [ActionName("clear-session")]
-        [Route("clear-session")]
+        [Route("clear-session/{userId}")]
         public async Task<ActionResult> ClearSession(string userId)
         {
             await _userService.ClearSession(userId);

@@ -21,7 +21,6 @@ namespace Okta.Middlewares
                     {
                         logger.LogError($"Something went wrong: {contextFeature.Error}");
                         await context.Response.WriteAsync($"An Error has occured: {context.Response.StatusCode} Internal Server Error.");
-
                     }
                 });
             });

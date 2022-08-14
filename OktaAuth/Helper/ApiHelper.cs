@@ -142,7 +142,7 @@ namespace OktaModels.Services
             var content = response.Content;
             var result = await content.ReadAsStringAsync().ConfigureAwait(false);
 
-            if (!response.IsSuccessStatusCode)
+            if (response.StatusCode == HttpStatusCode.InternalServerError)
             {
                 throw new ApiHelperException(response.StatusCode, result);
             }
